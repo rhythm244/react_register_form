@@ -1,7 +1,8 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from './api/axios';
+import axios from '../api/axios';
+import { Link } from "react-router-dom";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -60,12 +61,11 @@ const Register = () => {
                     withCredentials: true
                 }
             );
-            console.log(response?.data);
-            console.log(response?.accessToken);
-            console.log(JSON.stringify(response))
+            // TODO: remove console.logs before deployment
+            console.log(JSON.stringify(response?.data));
+            //console.log(JSON.stringify(response))
             setSuccess(true);
             //clear state and controlled inputs
-            //need value attrib on inputs for this
             setUser('');
             setPwd('');
             setMatchPwd('');
@@ -87,7 +87,7 @@ const Register = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="/login">Sign In</a>
+                        <a href="#">Sign In</a>
                     </p>
                 </section>
             ) : (
@@ -171,8 +171,7 @@ const Register = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a href="#">Sign In</a>
+                            <Link to="/">Sign In</Link>
                         </span>
                     </p>
                 </section>
